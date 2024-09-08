@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        /* figure */
+        #test {
+            width: 150px;
+            height: 150px;
+            background: #06c;
+            margin: 30px;
+
+            animation-name: test;
+            animation-duration: 5s;
+            animation-delay: 1s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        /* animation figure */
+        @keyframes test{
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+
+        /* textarea */
+        #out {
+            width: 260px;
+            height: 110px;
+            margin: 20px;
+            font-size: 15px;
+            background: #d84444;
+            padding: 5px;
+            color: #fff;
+        }
+
+        /* input range */
+        input[type=range] {
+            -webkit-appearance: none;
+            margin: 50px;
+            width: 200px;
+        }
+
+        input[type=range]:focus {
+            outline: none;
+        }
+
+        /* strip */
+        input[type=range]::-webkit-slider-runnable-track {
+            height: 8px;
+            cursor: pointer;
+            animate: 0.2s;
+            background: #06c;
+        }
+
+        /* runner */
+        input[type=range]::-webkit-slider-thumb {
+            height: 30px;
+            width: 30px;
+            border-radius: 30%;
+            background: #45ca2d;
+            cursor: pointer;
+            -webkit-appearance: none;
+            margin-top: -14px;
+        }
+
+    </style>
+</head>
+<body>
+
+
+<p>Border-radius: <input type="range" id="r1" value="0" ></p>
+<div id="test"></div>
+<textarea id="out" ></textarea>
+
+
+<script>
+    document.getElementById("r1").oninput = cssGenerator;
+
+    function cssGenerator() {
+        //прямоугольник
+        var div = document.getElementById('test');
+        // получаю textarea
+        var out = document.getElementById('out')
+        //console.log(this.value);
+        div.style.borderRadius = this.value + 'px';
+        // border-radius: 30px;
+        out.innerHTML = '-webkit-border-radius: '+this.value+'px;\n';
+        out.innerHTML += '-moz-border-radius: '+this.value+'px;\n';
+        out.innerHTML += '-ms-border-radius: '+this.value+'px;\n';
+        out.innerHTML += '-o-border-radius: '+this.value+'px;\n';
+        out.innerHTML += 'border-radius: '+this.value+'px;';
+    }
+</script>
+</body>
+</html>

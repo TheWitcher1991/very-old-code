@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        body{background: #263137;}
+
+        #game {
+            width: 150px;
+            height: 150px;
+            background: #d84444;
+            color: #fff;
+            margin: 50px auto;
+            border: 3px solid #000;
+            border-radius: 5px;
+        }
+
+        .block {
+            width: 50px;
+            height: 50px;
+            float: left;
+            border: 1px solid white;
+            box-sizing: border-box;
+            line-height: 50px;
+
+            text-align: center;
+            font-size: 40px;
+            text-transform: uppercase;
+        }
+    </style>
+
+
+</head>
+<body>
+<div id="game"></div>
+
+<script>
+    window.onload = function(){
+        for (var i = 0; i < 9; i++) {
+            document.getElementById('game').innerHTML+='<div class="block"></div>';
+        }
+
+        var hod = 0;
+
+        document.getElementById('game').onclick = function(event){
+            console.log(event);
+            if (event.target.className == 'block'){
+                if (hod%2==0) {
+                    event.target.innerHTML = 'x';
+                }
+                else {
+                    event.target.innerHTML = '0';
+                }
+                hod++;
+                checkWinner();
+            }
+        }
+
+        function checkWinner(){
+            var allblock = document.getElementsByClassName('block');
+            //console.log(allblock);
+            if (allblock[0].innerHTML=='x' && allblock[1].innerHTML=='x' && allblock[2].innerHTML=='x') alert('Победили крестики');
+            if (allblock[3].innerHTML=='x' && allblock[4].innerHTML=='x' && allblock[5].innerHTML=='x') alert('Победили крестики');
+            if (allblock[6].innerHTML=='x' && allblock[7].innerHTML=='x' && allblock[8].innerHTML=='x') alert('Победили крестики');
+            if (allblock[0].innerHTML=='x' && allblock[3].innerHTML=='x' && allblock[6].innerHTML=='x') alert('Победили крестики');
+            if (allblock[1].innerHTML=='x' && allblock[4].innerHTML=='x' && allblock[7].innerHTML=='x') alert('Победили крестики');
+            if (allblock[2].innerHTML=='x' && allblock[5].innerHTML=='x' && allblock[8].innerHTML=='x') alert('Победили крестики');
+            if (allblock[0].innerHTML=='x' && allblock[4].innerHTML=='x' && allblock[8].innerHTML=='x') alert('Победили крестики');
+            if (allblock[2].innerHTML=='x' && allblock[4].innerHTML=='x' && allblock[6].innerHTML=='x') alert('Победили крестики');
+            //нолики
+            if (allblock[0].innerHTML=='0' && allblock[1].innerHTML=='0' && allblock[2].innerHTML=='0') alert('Победили нолики');
+            if (allblock[3].innerHTML=='0' && allblock[4].innerHTML=='0' && allblock[5].innerHTML=='0') alert('Победили нолики');
+            if (allblock[6].innerHTML=='0' && allblock[7].innerHTML=='0' && allblock[8].innerHTML=='0') alert('Победили нолики');
+            if (allblock[0].innerHTML=='0' && allblock[3].innerHTML=='0' && allblock[6].innerHTML=='0') alert('Победили нолики');
+            if (allblock[1].innerHTML=='0' && allblock[4].innerHTML=='0' && allblock[7].innerHTML=='0') alert('Победили нолики');
+            if (allblock[2].innerHTML=='0' && allblock[5].innerHTML=='0' && allblock[8].innerHTML=='0') alert('Победили нолики');
+            if (allblock[0].innerHTML=='0' && allblock[4].innerHTML=='0' && allblock[8].innerHTML=='0') alert('Победили нолики');
+            if (allblock[2].innerHTML=='0' && allblock[4].innerHTML=='0' && allblock[6].innerHTML=='0') alert('Победили нолики');
+        }
+
+    }
+
+</script>
+</body>
+</html>

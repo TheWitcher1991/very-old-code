@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Конь&Ферзь</title>
+    <style>
+        #sub-1 {
+            background: #06c;
+            border: none;
+            padding: 5px;
+            color: #fff;
+            border-radius: 3px;
+        }
+
+        #sub-1:hover{background: /*#1c7ad8*/#d84444;transition: all 0.5s ease}
+
+        .konK {
+            background: #06c;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            width: 50px;
+        }
+
+        .konK:hover{background: #d84444;transition: all 0.5s ease}
+
+        .kf {
+            background: #06c;
+            color: #fff;
+            padding: 5px;
+            text-align: center;
+            width: 200px;
+            border-radius: 5px;
+        }
+
+        .kf:hover{background: #d84444;transition: all 0.5s ease}
+
+        #h1 {
+            background: #06c;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        #h1:hover{background: #d84444;transition: all 0.5s ease}
+    </style>
+</head>
+<body style="font-family: cursive;">
+
+
+<script>
+    document.write("<h1 id=\"h1\">Конь&Ферзь</h1>");
+
+    var x,y,fx,fy;
+
+    var konx = [8];
+    var kony = [8];
+    /********КОНЬ********/
+    function f1() {
+        //работаем с input
+        x = document.getElementById('n1').value;
+        x = parseInt(x);
+
+        y = document.getElementById('n2').value;
+        y = parseInt(y);
+
+        if ( (x == 0) && (y == 0) ) {
+            alert("Таких координат не существует!");
+        } else {
+            document.getElementById('out').innerHTML = x;
+            document.getElementById('out2').innerHTML = y;
+
+            //считываем координаты коня
+            konx[1] = x - 2;kony[1] = y - 1;
+            konx[2] = x - 2;kony[2] = y + 1;
+            konx[3] = x - 1;kony[3] = y - 2;
+            konx[4] = x - 1;kony[4] = y + 2;
+            konx[5] = x + 1;kony[5] = y - 2;
+            konx[6] = x + 1;kony[6] = y + 2;
+            konx[7] = x + 2;kony[7] = y - 1;
+            konx[8] = x + 2;kony[8] = y + 1;
+
+            //координаты по X
+            document.getElementById('a1').innerHTML = konx[1];
+            document.getElementById('a2').innerHTML = konx[2];
+            document.getElementById('a3').innerHTML = konx[3];
+            document.getElementById('a4').innerHTML = konx[4];
+            document.getElementById('a5').innerHTML = konx[5];
+            document.getElementById('a6').innerHTML = konx[6];
+            document.getElementById('a7').innerHTML = konx[7];
+            document.getElementById('a8').innerHTML = konx[8];
+            //координаты по Y
+            document.getElementById('a9').innerHTML = kony[1];
+            document.getElementById('a10').innerHTML = kony[2];
+            document.getElementById('a11').innerHTML = kony[3];
+            document.getElementById('a12').innerHTML = konx[4];
+            document.getElementById('a13').innerHTML = kony[5];
+            document.getElementById('a14').innerHTML = kony[6];
+            document.getElementById('a15').innerHTML = kony[7];
+            document.getElementById('a16').innerHTML = kony[8];
+        }
+    }
+
+
+    /*********ФЕРЗЬ**********/
+    function f2() {
+        fx = document.getElementById('f1').value;
+        fx = parseInt(fx);
+
+        fy = document.getElementById('f2').value;
+        fy = parseInt(fy);
+
+
+        if ( (fx == 0) && (fy == 0) ) {
+            alert("Таких координат не существует!");
+        } else {
+            document.getElementById('outf1').innerHTML = fx;
+            document.getElementById('outf2').innerHTML = fy;
+
+            //битие ферзя
+            if ( ( fx == x ) || ( fy == y ) ) {
+                //document.write("Ферзь бьёт коня!<br />");
+                document.getElementById('ferz').textContent = "Ферзь бьёт коня!";
+            } else {
+                //document.write("Ферзь не бьёт коня!<br />");
+                document.getElementById('ferz').textContent = "Ферзь не  бьёт коня!";
+            }
+
+            //битие коня
+            if ( ( fx == konx[x] ) || ( fy == kony[y] ) ) {
+                //document.write("Конь бьёт ферзя!<br />");
+                document.getElementById('kon').textContent = "Конь бьёт ферзя";
+            } else {
+                //document.write("Конь не бьёт ферзя!<br />");
+                document.getElementById('kon').textContent = "Конь не бьёт ферзя!";
+            }
+        }
+    }
+</script>
+
+<hr size="2" color="#d84444">
+
+<!--КОНЬ-->
+<p>Введите координаты коня по осям</p>
+<input style="border: 2px solid #06c;border-radius: 2px;" type="text" id="n1" placeholder="Введите координату X:"><br />
+<p></p>
+<input style="border: 2px solid #06c;border-radius: 2px;" type="text" id="n2" placeholder="Введите координату Y:">
+<br />
+<br />
+<input onclick="f1()" type="submit" value="Узнать" id="sub-1">
+
+<p>Конь стоит на: <span id="out"></span> | <span id="out2"></span></p>
+
+<h2>Битые точки:</h2>
+
+<div class="konK">
+    <span id="a1"></span> | <span id="a9"></span><br />
+    <span id="a2"></span> | <span id="a10"></span><br />
+    <span id="a3"></span> | <span id="a11"></span><br />
+    <span id="a4"></span> | <span id="a12"></span><br />
+    <span id="a5"></span> | <span id="a13"></span><br />
+    <span id="a6"></span> | <span id="a14"></span><br />
+    <span id="a7"></span> | <span id="a15"></span><br />
+    <span id="a8"></span> | <span id="a16"></span><br />
+</div>
+<br />
+
+<hr size="2" color="#d84444">
+
+<!--ФЕРЗЬ-->
+<p>Введите координаты ферзя по осям</p>
+<input style="border: 2px solid #06c;border-radius: 2px;" type="text" id="f1" placeholder="Введите координату X:"><br />
+<p></p>
+<input style="border: 2px solid #06c;border-radius: 2px;" type="text" id="f2" placeholder="Введите координату Y:">
+<br />
+<br />
+<input onclick="f2()" type="submit" value="Узнать" id="sub-1">
+
+<p>Ферзь стоит на: <span id="outf1"></span> | <span id="outf2"></span></p>
+
+<div class="kf">
+    <span id="kon"></span><br />
+    <span id="ferz"></span><br />
+</div>
+
+<br />
+
+<hr size="2" color="#d84444">
+
+<p>&copy; 2018. Конь&Ферзь</p>
+</body>
+</html>
